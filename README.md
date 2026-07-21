@@ -30,7 +30,7 @@ Topics covered:
 **Tools:** Python, Jupyter Notebook
 
 
-## Day 3 — NumPy Fundamentals
+## Day 3 — NumPy: Numerical Computing
 
 In this day, I learned the fundamentals of NumPy, the core numerical computing library used throughout the AI/ML ecosystem. I practiced creating and manipulating arrays, performing vectorized operations, using boolean masking, and applying broadcasting for efficient numerical computations.
 
