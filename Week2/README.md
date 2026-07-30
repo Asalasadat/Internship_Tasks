@@ -1,94 +1,118 @@
-# Week 2 — Statistics, Probability & Exploratory Data Analysis
+# 📚 Week 2 Summary — Statistics, Probability & Exploratory Data Analysis
 
-## 📖 Overview
-Week 2 focused on the mathematical and statistical foundation of data science and machine learning — starting with descriptive statistics and probability, moving through linear algebra, and culminating in a complete exploratory data analysis (EDA) on a real dataset.
+## 📊 Descriptive Statistics
 
-## 🗓️ Daily Summary
+Machine learning models learn patterns from data, so understanding a dataset before modeling is essential. Descriptive statistics help summarize a dataset by describing its **center**, **spread**, and **distribution**.
 
-### Day 1 — Descriptive Statistics
-Learned the fundamentals of descriptive statistics, essential for understanding and analyzing data before building machine learning models. Practiced measuring the center and spread of data, interpreting statistical measures, and identifying the impact of outliers on data analysis.
+### Key Concepts
+- **Measures of Central Tendency**
+  - **Mean:** Average value of the dataset.
+  - **Median:** Middle value after sorting the data.
+  - **Mode:** Most frequently occurring value.
+  - Comparing the mean and median helps identify skewness and the presence of outliers.
 
-**Topics covered:**
-- Importance of descriptive statistics in Exploratory Data Analysis (EDA)
-- Measures of central tendency: Mean, Median, and Mode
-- Understanding when to use each measure and how outliers affect them
-- Measures of spread: Range, Variance, Standard Deviation, and Interquartile Range (IQR)
-- Percentiles and Quartiles (Q1, Q2, Q3)
-- Detecting and interpreting outliers using statistical measures
-- Summarizing and interpreting the distribution, center, and spread of a dataset
+- **Measures of Spread**
+  - **Variance:** Measures how far values are spread from the mean.
+  - **Standard Deviation:** Square root of the variance, expressed in the same units as the data.
+  - **Interquartile Range (IQR):** Measures the spread of the middle 50% of the data and is less affected by outliers.
 
-**Tools:** NumPy, Pandas, Jupyter Notebook
-
----
-
-### Day 2 — Probability & Distributions
-Learned the fundamentals of probability and probability distributions, essential for understanding uncertainty and making predictions in Machine Learning. Practiced applying probability rules, calculating conditional probability, understanding Bayes' theorem, and exploring common probability distributions through simulations and visualizations.
-
-**Topics covered:**
-- Probability fundamentals and probability calculations
-- Core probability rules: Complement, Addition, and Multiplication
-- Conditional probability and its applications in Machine Learning
-- Bayes' theorem and the concepts of prior, likelihood, and posterior
-- Common probability distributions: Normal, Binomial, and Uniform
-- Simulating probability experiments using NumPy
-- Visualizing probability distributions with Matplotlib
-
-**Tools:** NumPy, Matplotlib, Jupyter Notebook
+Understanding these statistics provides the first insight into a dataset before creating any visualizations.
 
 ---
 
-### Day 3 — Linear Algebra for Machine Learning
-Learned the fundamentals of linear algebra, the mathematical foundation of Machine Learning. Practiced representing data as vectors and matrices, computing dot products, performing matrix multiplication, and understanding how these operations are used to generate predictions in ML models.
+## 🎲 Probability & Distributions
 
-**Topics covered:**
-- The role of linear algebra in Machine Learning
-- Representing individual samples as vectors
-- Representing datasets as matrices
-- Understanding matrix dimensions and shapes
-- Computing dot products and their role in model predictions
-- Matrix multiplication using NumPy
-- Understanding shape compatibility and resolving shape mismatch errors
+Probability measures uncertainty and forms the foundation of predictive machine learning models.
 
-**Tools:** NumPy, Jupyter Notebook
+### Key Concepts
+- **Probability Rules**
+  - Complement Rule
+  - Addition Rule
+  - Multiplication Rule
 
----
+- **Conditional Probability**
+  - Represents the probability of an event occurring given that another event has already occurred.
+  - Forms the basis of many classification problems.
 
-### Day 4 — EDA Part 1: Distributions & Outliers
-Learned the fundamentals of Exploratory Data Analysis (EDA), the first and most important step before building machine learning models. Practiced exploring data distributions, visualizing variables with Seaborn, identifying outliers, and understanding their impact on data analysis.
+- **Bayes' Theorem**
+  - Combines prior knowledge with new evidence to calculate updated probabilities.
+  - Provides the mathematical foundation of the **Naive Bayes** classifier.
 
-**Topics covered:**
-- Introduction to Exploratory Data Analysis (EDA) and its importance
-- Statistical data visualization using Seaborn
-- Univariate analysis with histograms, box plots, count plots, and KDE plots
-- Understanding data distributions and category frequencies
-- Detecting outliers using the Interquartile Range (IQR) method
-- Evaluating and handling outliers based on data context
+### Common Probability Distributions
+- **Normal (Gaussian):** Symmetric, bell-shaped distribution commonly found in real-world data.
+- **Binomial:** Models the number of successes in repeated independent trials.
+- **Uniform:** Every outcome has an equal probability.
 
-**Tools:** Seaborn, Pandas, Matplotlib, Jupyter Notebook
+The normal distribution is particularly important because many statistical techniques and ML algorithms assume approximately normal data.
 
 ---
 
-### Day 5 — EDA Part 2: Correlation & Data Storytelling
-Learned how to explore relationships between variables using bivariate analysis and correlation techniques. Practiced creating visualizations to identify patterns, interpreting correlation matrices, and communicating findings through a clear data storytelling approach.
+## 📐 Linear Algebra for Machine Learning
 
-**Topics covered:**
-- Bivariate analysis using scatter plots and grouped box plots
-- Measuring relationships between variables with correlation
-- Visualizing correlation matrices using heatmaps
-- Understanding that correlation does not imply causation
-- Exploring datasets with pairplots to identify patterns
-- Data storytelling by summarizing insights and communicating findings
-- Building a complete EDA notebook combining statistics, visualizations, and interpretation
+Linear algebra is the mathematical language behind machine learning. Every dataset, feature set, and model parameter can be represented using vectors and matrices.
 
-**Tools:** Seaborn, Pandas, Matplotlib, Jupyter Notebook, Git & GitHub
+### Key Concepts
+- **Vectors:** Represent the features of a single data sample.
+- **Matrices:** Represent entire datasets, where rows are samples and columns are features.
+- **Dot Product:** Computes predictions in linear models using:
+
+```text
+Prediction = Dot(Features, Weights) + Bias
+```
+
+- **Matrix Multiplication:** Enables predictions for multiple samples simultaneously while following the rule that inner dimensions must match.
+
+Understanding matrix shapes is essential for avoiding shape mismatch errors in machine learning implementations.
 
 ---
 
-## 🛠️ Tools Used This Week
-NumPy • Pandas • Matplotlib • Seaborn • Jupyter Notebook • Git & GitHub
+## 📈 EDA Part 1 — Distributions & Outliers
 
-## 🔑 Key Takeaways
-- Understanding data statistically (center, spread, shape) is the foundation of any ML work
-- Probability and distributions are the mathematical language predictions are built on
-- Linear algebra is literally what's happening "inside" a model when it predicts
-- EDA (exploration + outliers + relationships + correlation) is a required step before modeling, built as a narrated notebook that combines code and interpretation together
+Exploratory Data Analysis (EDA) is the first step of every machine learning project. It helps identify patterns, understand distributions, and detect data quality issues before modeling.
+
+### Key Concepts
+- Statistical visualization using **Seaborn**
+- **Histogram:** Shows the distribution of numeric variables.
+- **Box Plot:** Displays quartiles and identifies potential outliers.
+- **Count Plot:** Displays frequencies of categorical variables.
+- **KDE Plot:** Shows a smooth estimate of the data distribution.
+
+### Outlier Detection
+The **Interquartile Range (IQR)** method identifies potential outliers using:
+
+```text
+Lower Bound = Q1 − 1.5 × IQR
+Upper Bound = Q3 + 1.5 × IQR
+```
+
+Outliers should always be investigated before deciding whether to keep, modify, or remove them.
+
+---
+
+## 📊 EDA Part 2 — Correlation & Data Storytelling
+
+The second stage of EDA focuses on discovering relationships between variables and communicating insights effectively.
+
+### Key Concepts
+- **Bivariate Analysis**
+  - Scatter plots for relationships between numerical variables.
+  - Grouped box plots for comparing numeric values across categories.
+
+- **Correlation Analysis**
+  - Measures the strength and direction of relationships between variables.
+  - Correlation heatmaps provide a quick overview of all pairwise relationships.
+
+> **Important:** Correlation does **not** imply causation.
+
+- **Pairplot**
+  - Provides a complete overview of relationships among numerical variables.
+
+### Data Storytelling
+
+The final goal of EDA is not just creating charts, but communicating insights through a clear narrative that explains:
+- What the dataset contains.
+- Which patterns and relationships were discovered.
+- What data quality issues exist.
+- What these findings imply for future machine learning models.
+
+> **A correlation without interpretation is just a number—the story behind the data is what makes it valuable.**
