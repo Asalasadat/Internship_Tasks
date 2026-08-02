@@ -1,74 +1,31 @@
-# 📚 Week 1 Summary — Python Foundations for Data Science
+## Day 1 — Supervised Learning Concepts & the Scikit-learn API
 
-## Environment & Tools
+### Overview
+In this day, I learned the fundamentals of supervised learning workflow using Scikit-learn — specifically how to prepare a dataset for training by separating features from the target variable and splitting the data into training and testing sets.
 
-Every AI and Data Science project starts with a reproducible Python environment. Using tools like **venv** or **conda**, we isolate project dependencies and avoid conflicts between different projects. The used library versions are documented in a `requirements.txt` file, allowing anyone to recreate the same environment and achieve consistent results.
+### Topics Covered
+- Separating a dataset into features (`X`) and a target variable (`y`)
+- Performing an 80/20 train/test split using `train_test_split`
+- Using `random_state` to ensure reproducible splits
+- Verifying the shapes of `X_train`, `X_test`, `y_train`, and `y_test`
+- Understanding why a model must never see the test set during training
 
-**Jupyter Notebook** is the main workspace for data science workflows. It combines executable code cells with Markdown cells for documentation, creating a structured report rather than an unorganized collection of code. **Git and GitHub** provide version control, collaboration, and a professional portfolio for tracking and sharing projects.
+### Key Concepts
 
----
+**Features (X) vs. Target (y)**
+The dataset is divided into input features (`X`) that the model uses to make predictions, and a target variable (`y`) that the model is trained to predict. In this notebook, `math score` was selected as the target, so it was dropped from `X` and stored separately in `y`.
 
-## Python Fundamentals
+**Train/Test Split**
+The data was split so that 80% is used for training the model and 20% is held out for testing on unseen data. Setting `random_state=42` ensures the same split can be reproduced on every run.
 
-Python fundamentals include working with core data types such as numbers, strings, lists, tuples, dictionaries, and sets. Program execution is controlled using conditional statements (`if`, `elif`, `else`) and loops (`for`, `while`).
+**Why the Test Set Must Stay Unseen**
+A model can memorize its training data and appear to perform perfectly, while actually failing on new, unseen data. Keeping the test set completely separate during training is what allows an honest evaluation of how well the model generalizes.
 
-Functions allow us to organize reusable logic with clear inputs and outputs. **List comprehension** provides a concise way to create lists using a single line of code instead of traditional multi-line loops.
+### Result
+X_train: (800, 7)
+X_test: (200, 7)
+y_train: (800,)
+y_test: (200,)
 
-Object-Oriented Programming (OOP) concepts such as **classes, attributes, and methods** are essential because many machine learning libraries, including **Scikit-learn** and **PyTorch**, are built around these principles.
-
----
-
-## NumPy — Numerical Computing
-
-**NumPy** is the foundation for many data science and machine learning libraries, including Pandas, Scikit-learn, TensorFlow, and PyTorch.
-
-The core object in NumPy is the **ndarray**, a fast and memory-efficient multi-dimensional array compared to standard Python lists. Arrays can be created using different methods such as `array()`, `zeros()`, and `arange()`.
-
-NumPy supports powerful operations including:
-
-- **Indexing and slicing** for accessing array elements.
-- **Vectorization**, which allows performing operations on entire arrays without writing explicit loops, improving both speed and readability.
-- **Broadcasting**, which enables operations between arrays with compatible but different shapes.
-
----
-
-## Pandas — Tabular Data Analysis
-
-**Pandas** is the primary tool for working with structured and tabular data. It provides two main data structures:
-
-- **Series:** A labeled one-dimensional data structure (single column).
-- **DataFrame:** A two-dimensional table containing rows and columns, similar to data stored in CSV files, Excel sheets, or databases.
-
-The typical workflow begins with loading and exploring data using functions such as:
-
-- `read_csv()`
-- `head()`
-- `info()`
-- `describe()`
-
-Data preprocessing includes selecting and filtering rows and columns, handling missing values, and removing duplicates using:
-
-- `fillna()`
-- `dropna()`
-- `drop_duplicates()`
-
-The `groupby()` function enables the **split-apply-combine** process, allowing data to be grouped and analyzed to discover patterns and trends.
-
----
-
-## Matplotlib — Data Visualization
-
-Data tables can hide important patterns that become clear through visualization. **Matplotlib** is a fundamental library for creating meaningful plots.
-
-The four main visualization types are:
-
-- **Line Plot:** Used to track changes over a continuous axis.
-- **Scatter Plot:** Used to analyze relationships between two variables.
-- **Bar Chart:** Used to compare values across categories.
-- **Histogram:** Used to understand the distribution of a single variable.
-
-The `subplots()` function allows multiple visualizations to be displayed together for easier comparison.
-
-A key principle in data visualization:
-
-> A plot without labels, titles, and clear explanations is not a result — it is just a picture.
+### Tools Used
+Pandas • Scikit-learn • Jupyter Notebook
