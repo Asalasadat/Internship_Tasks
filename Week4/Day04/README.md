@@ -68,12 +68,11 @@ ensemble had already converged by 100–200 trees.
  
 ## Tools
  
-```
-pandas
-numpy
-scikit-learn
-Jupyter Notebook
-```
+- pandas
+- numpy
+- scikit-learn
+- Jupyter Notebook
+
  
 ## Usage
  
