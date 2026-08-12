@@ -1,4 +1,4 @@
- Day 4 — Feature Engineering & Hyperparameter Tuning
+ # Day 4 — Feature Engineering & Hyperparameter Tuning
  
 Predicting California median house values with a tuned Random Forest 
 Regressor, using engineered features and both `GridSearchCV` and 
@@ -66,12 +66,13 @@ across `1.0` / `sqrt` / `log2`) — using all features per split beat both
 restricted options. `n_estimators` mattered least, indicating the 
 ensemble had already converged by 100–200 trees.
  
-## Requirements
+## Tools
  
 ```
 pandas
 numpy
 scikit-learn
+Jupyter Notebook
 ```
  
 ## Usage
