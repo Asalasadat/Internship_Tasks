@@ -110,4 +110,3 @@ Coefficients from the final Logistic Regression model:
 ## Files
 - `Demo.ipynb` — full notebook: data cleaning, EDA, modeling, evaluation, and interpretation
 - `requirements.txt` — exact library versions for reproducibility
-- `outputs/` — generated plots, confusion matrix, and result summaries
