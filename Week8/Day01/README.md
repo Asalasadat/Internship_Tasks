@@ -1,56 +1,44 @@
-# Day 1 — Sprint 3 Planning & NLP Preprocessing
+# Day 1 — Sprint 3: NLP Preprocessing for Fake News Detection
 
-## Project Overview
-This notebook kicks off **Sprint 3**, a new phase of the Phase 3 capstone focused on **Natural Language Processing (NLP)**. It opens with Sprint Planning — defining the goal of integrating a trained NLP model into a complete, evaluated pipeline — then walks through the foundational text-preprocessing steps: tokenization, lowercasing, punctuation removal, stop-word removal, and lemmatization.
+## The Problem
 
-## Sprint 3 Planning
+Raw news text can't be fed directly into a machine learning classifier — it's full of inconsistent casing, punctuation, and common filler words that add noise rather than signal. But cleaning text isn't just a mechanical pass: an aggressive cleaning pipeline can accidentally strip out words that actually carry meaning, like negations ("not", "no", "nor"), and silently flip the sense of a sentence before the model ever sees it. This notebook is Day 1 of Sprint 3 in a Fake News Detection project, and it exists to solve that problem: build a text preprocessing pipeline that is thorough enough to reduce noise, but careful enough not to destroy meaning.
 
-**Sprint Goal:** Integrate the trained NLP model into a complete pipeline and evaluate it rigorously.
+## Sprint 3 Context
 
-**Backlog:**
-- Preprocess and clean raw text.
-- Tokenize the text.
-- Apply appropriate text normalization.
-- Evaluate stop-word removal.
-- Apply lemmatization where appropriate.
-- Integrate preprocessing with the NLP model.
-- Evaluate the complete pipeline using appropriate metrics.
-- Document experiments and results.
+**Sprint Goal:** Integrate the text preprocessing and TF-IDF pipeline with the machine learning classifier, then evaluate model performance.
 
-## Workflow
+This notebook covers the first half of that goal — the preprocessing stage. The remaining backlog items (TF-IDF vectorization, train/test split, model training, and evaluation with accuracy/precision/recall/F1/confusion matrix) are planned for subsequent notebooks in the sprint.
 
-### 1. Tokenization
-Tokenized a raw sample sentence using NLTK's `word_tokenize()`:
+## What This Notebook Does
 
-- **Original text:** `"Natural Language Processing allows computers to understand human language."`
-- **Tokenized output:** `['Natural', 'Language', 'Processing', 'allows', 'computers', 'to', 'understand', 'human', 'language', '.']`
+The notebook works through the problem in stages, each one building on the last:
 
-Tokenization is the first step in any NLP pipeline — it converts unstructured text into discrete units (tokens) that downstream models can process.
+1. **Loads the data.** It pulls the [WELFake dataset](https://www.kaggle.com/datasets/saurabhshahane/fake-news-classification) via `kagglehub` and reads `WELFake_Dataset.csv` into a pandas DataFrame.
 
-### 2. Full Text-Cleaning Pipeline
-Applied a complete preprocessing pipeline to a second sample sentence (`"Natural Language Processing allows computers to understand human languages. It is very useful!"`), combining five steps in sequence:
+2. **Tokenizes a sample.** Before cleaning anything, it takes one raw text sample and runs it through NLTK's `word_tokenize()` to see what raw tokenization looks like — words, numbers, and punctuation all treated as separate tokens.
 
-1. **Tokenization** — split the text into words/punctuation via `word_tokenize()`.
-2. **Lowercasing** — normalized all tokens to lowercase for consistency.
-3. **Punctuation Removal** — filtered out tokens found in `string.punctuation`.
-4. **Stop-Word Removal** — removed common English stop words (`the`, `is`, `to`, etc.) using NLTK's English stopword list.
-5. **Lemmatization** — reduced each remaining word to its base dictionary form using `WordNetLemmatizer`.
+3. **Builds a full cleaning pipeline.** The raw text is then run through a sequence of steps: lowercasing, punctuation removal, stop-word removal, and lemmatization (reducing words to their base dictionary form via `WordNetLemmatizer`).
 
-**Result:**
-- **Cleaned tokens:** `['natural', 'language', 'processing', 'allows', 'computer', 'understand', 'human', 'language', 'useful']`
-- **Cleaned text:** `"natural language processing allows computer understand human language useful"`
+4. **Checks for a specific failure mode.** This is the notebook's key design decision: standard NLTK stop-word lists include negation words like `no`, `not`, and `nor`. If those get removed along with filler words like "the" and "is", a sentence's meaning can flip — which is dangerous for a task like fake news classification, where meaning matters. The notebook explicitly checks which negation words NLTK's stop-word list would remove, then excludes those from the stop-word removal step so they survive the cleaning pass.
 
-Note how `computers` → `computer` and `languages` → `language` after lemmatization, and filler words (`to`, `it`, `is`, `very`) and the exclamation mark are dropped entirely.
+5. **Documents the reasoning.** Each cleaning decision (lowercasing, punctuation removal, stop-word removal, negation preservation, lemmatization) is recorded with a short justification, so the choices are auditable later — not just the code, but why the code does what it does.
 
-## Key Findings
-1. Tokenization is the essential first step that breaks raw text into processable units before any further NLP analysis.
-2. A standard cleaning pipeline — lowercase → remove punctuation → remove stop words → lemmatize — significantly reduces noise and normalizes vocabulary (e.g. collapsing plural/singular forms) while preserving the core meaning of the sentence.
-3. This cleaned, normalized token output is now ready to feed into vectorization (e.g. TF-IDF, embeddings) and the NLP model integration planned later in the Sprint 3 backlog.
+## Requirements
 
-## Tools Used
-- Python, Jupyter Notebook (Google Colab)
-- **NLTK** — `word_tokenize`, `stopwords` corpus, `WordNetLemmatizer`; NLTK resource downloads (`punkt_tab`, `stopwords`, `wordnet`)
-- Python `string` module — punctuation filtering
+- Python 3
+- `kagglehub`
+- `pandas`
+- `nltk` (with the `punkt`, `stopwords`, `wordnet`, and `omw-1.4` resources — the notebook downloads these automatically on first run)
 
-## Files
-- `Day01.ipynb` — full notebook: Sprint 3 planning, tokenization demo, and the full text-cleaning pipeline (lowercase → remove punctuation → remove stop words → lemmatize)
+A `requirements.txt` is generated at the end of the notebook via `pip freeze`.
+
+## How to Run
+
+1. Install dependencies (or let the first cell's `pip install -q kagglehub` handle that piece).
+2. Run the notebook top to bottom — it downloads the dataset automatically, so no manual data setup is needed.
+3. NLTK resource downloads happen inline the first time they're needed; subsequent runs will be faster since the resources are cached.
+
+## What's Next
+
+Sprint 3's remaining backlog items — TF-IDF vectorization, splitting the data, training the classifier, and evaluating it — build directly on the cleaned text this notebook produces.
